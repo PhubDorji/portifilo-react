@@ -1,0 +1,35 @@
+.skills {
+  padding: 6rem 6vw 8rem;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.skill-block .cat {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--copper);
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.skill-block ul {
+  list-style: none;
+}
+
+.skill-block li {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--paper-dim);
+  transition: color 0.25s, padding-left 0.25s;
+}
+
+.skill-block li:hover {
+  color: var(--paper);
+  padding-left: 8px;
+}

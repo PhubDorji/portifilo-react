@@ -1,0 +1,9 @@
+.footer {
+  padding: 2rem 6vw;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--paper-dim);
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+}

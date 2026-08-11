@@ -1,0 +1,46 @@
+.crosshair-v {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  width: 1px;
+  height: 100vh;
+  background: rgba(111, 214, 196, 0.25);
+  transform: translateX(-100px);
+}
+
+.crosshair-h {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  width: 100vw;
+  height: 1px;
+  background: rgba(111, 214, 196, 0.25);
+  transform: translateY(-100px);
+}
+
+.coord {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--teal);
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  padding: 3px 7px;
+  border-radius: 2px;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .crosshair-v,
+  .crosshair-h,
+  .coord {
+    display: none;
+  }
+}

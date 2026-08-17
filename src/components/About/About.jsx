@@ -13,7 +13,7 @@ function About() {
       </div>
       <div className="about-grid">
         <div className="about-text">
-          <p>I'm a full-stack developer who cares about the details most people skip — the 2px of extra padding, the transition curve, the copy on an empty state. <strong>I build applications the way a craftsman builds furniture:</strong> precise, deliberate, nothing left to guesswork.</p>
+          <p>Changes Applied <strong>I build applications the way a craftsman builds furniture:</strong> precise, deliberate, nothing left to guesswork.</p>
           <p>My process starts with understanding requirements, moves to code fast, and stays there — I'd rather iterate in the browser than in a mockup tool. That habit shows up in how quickly ideas become real, working software.</p>
         </div>
         <div className="about-stats">

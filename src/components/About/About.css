@@ -68,8 +68,155 @@
   margin-top: 4px;
 }
 
+.about-visual {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.running-person {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  border-radius: 28px;
+  background: radial-gradient(circle at 25% 20%, rgba(56, 206, 192, 0.2), transparent 30%),
+    radial-gradient(circle at 75% 25%, rgba(255, 255, 255, 0.12), transparent 22%),
+    linear-gradient(135deg, rgba(10, 16, 29, 0.9), rgba(13, 21, 35, 0.95));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 18px 40px rgba(0, 0, 0, 0.14);
+}
+
+.running-person::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.runner-head,
+.runner-body,
+.runner-arm,
+.runner-leg {
+  position: absolute;
+  background: var(--paper);
+}
+
+.runner-head {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  top: 20px;
+  left: 46px;
+}
+
+.runner-body {
+  width: 6px;
+  height: 42px;
+  top: 38px;
+  left: 50px;
+  border-radius: 4px;
+  transform-origin: top center;
+  animation: torso-swing 0.6s ease-in-out infinite;
+}
+
+.runner-arm {
+  width: 24px;
+  height: 4px;
+  top: 48px;
+  border-radius: 999px;
+}
+
+.runner-arm-front {
+  left: 20px;
+  transform-origin: left center;
+  transform: rotate(22deg);
+  animation: arm-front 0.6s ease-in-out infinite;
+}
+
+.runner-arm-back {
+  left: 50px;
+  transform-origin: left center;
+  transform: rotate(-36deg);
+  animation: arm-back 0.6s ease-in-out infinite;
+}
+
+.runner-leg {
+  width: 26px;
+  height: 4px;
+  top: 78px;
+  border-radius: 999px;
+}
+
+.runner-leg-front {
+  left: 18px;
+  transform-origin: left center;
+  animation: leg-front 0.6s ease-in-out infinite;
+}
+
+.runner-leg-back {
+  left: 52px;
+  transform-origin: left center;
+  animation: leg-back 0.6s ease-in-out infinite;
+}
+
+.running-caption {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--paper-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+@keyframes torso-swing {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-4deg);
+  }
+}
+
+@keyframes arm-front {
+  0%, 100% {
+    transform: rotate(22deg);
+  }
+  50% {
+    transform: rotate(48deg);
+  }
+}
+
+@keyframes arm-back {
+  0%, 100% {
+    transform: rotate(-36deg);
+  }
+  50% {
+    transform: rotate(-10deg);
+  }
+}
+
+@keyframes leg-front {
+  0%, 100% {
+    transform: rotate(12deg);
+  }
+  50% {
+    transform: rotate(-28deg);
+  }
+}
+
+@keyframes leg-back {
+  0%, 100% {
+    transform: rotate(-40deg);
+  }
+  50% {
+    transform: rotate(12deg);
+  }
+}
+
 @media (max-width: 860px) {
   .about-grid {
     grid-template-columns: 1fr;
   }
 }
+

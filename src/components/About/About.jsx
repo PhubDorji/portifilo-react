@@ -25,6 +25,17 @@ function About() {
             <div className="num">6</div>
             <div className="label">YEARS DEVELOPING</div>
           </div>
+          <div className="about-visual">
+            <div className="running-person" aria-hidden="true">
+              <div className="runner-head"></div>
+              <div className="runner-body"></div>
+              <div className="runner-arm runner-arm-front"></div>
+              <div className="runner-arm runner-arm-back"></div>
+              <div className="runner-leg runner-leg-front"></div>
+              <div className="runner-leg runner-leg-back"></div>
+            </div>
+            <div className="running-caption">Always moving forward.</div>
+          </div>
         </div>
       </div>
     </section>

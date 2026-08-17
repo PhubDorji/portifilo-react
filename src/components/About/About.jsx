@@ -13,7 +13,7 @@ function About() {
       </div>
       <div className="about-grid">
         <div className="about-text">
-          <p>Changes Applied <strong>I build applications the way a craftsman builds furniture:</strong> precise, deliberate, nothing left to guesswork.</p>
+          <p>Changes Applied <strong>BRRANCH</strong> precise, deliberate, nothing left to guesswork.</p>
           <p>My process starts with understanding requirements, moves to code fast, and stays there — I'd rather iterate in the browser than in a mockup tool. That habit shows up in how quickly ideas become real, working software.</p>
         </div>
         <div className="about-stats">

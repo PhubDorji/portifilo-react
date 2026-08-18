@@ -14,7 +14,7 @@ function About() {
       <div className="about-grid">
         <div className="about-text">
           <p>Changes Applied <strong>BRRANCH</strong> precise, deliberate, nothing left to guesswork.</p>
-          <p>CONFLIT</p>
+          <p>CONFLIT A</p>
         </div>
         <div className="about-stats">
           <div className="stat-card">

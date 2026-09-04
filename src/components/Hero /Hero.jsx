@@ -1,6 +1,6 @@
-
 import { useEffect, useRef, useState } from "react";
 import spiderManVideo from "../../assets/spider-man.mp4";
+import phubCharacter from "../../assets/phub-character.png";
 
 import "./Hero.css";
 
@@ -23,6 +23,7 @@ function Hero() {
       frameId = undefined;
 
       const sectionTop = section.offsetTop;
+
       const scrollableDistance =
         section.offsetHeight - window.innerHeight;
 
@@ -30,30 +31,41 @@ function Hero() {
         1,
         Math.max(
           0,
-          (window.scrollY - sectionTop) / scrollableDistance
+          (window.scrollY - sectionTop) /
+            scrollableDistance
         )
       );
 
       setProgress(currentProgress);
 
       if (video.duration) {
-        video.currentTime = currentProgress * video.duration;
+        video.currentTime =
+          currentProgress * video.duration;
       }
     };
 
     const requestVideoUpdate = () => {
       if (frameId === undefined) {
-        frameId = window.requestAnimationFrame(updateVideo);
+        frameId =
+          window.requestAnimationFrame(updateVideo);
       }
     };
 
     const handleMetadata = () => {
-      if (video.duration && Number.isFinite(video.duration)) {
-        setScrollHeight(Math.max(220, video.duration * 28));
+      if (
+        video.duration &&
+        Number.isFinite(video.duration)
+      ) {
+        setScrollHeight(
+          Math.max(220, video.duration * 28)
+        );
       }
     };
 
-    video.addEventListener("loadedmetadata", handleMetadata);
+    video.addEventListener(
+      "loadedmetadata",
+      handleMetadata
+    );
 
     window.addEventListener(
       "scroll",
@@ -61,7 +73,10 @@ function Hero() {
       { passive: true }
     );
 
-    window.addEventListener("resize", requestVideoUpdate);
+    window.addEventListener(
+      "resize",
+      requestVideoUpdate
+    );
 
     requestVideoUpdate();
 
@@ -87,17 +102,23 @@ function Hero() {
     };
   }, []);
 
-  /*
-    Different text sections appear at different
-    points of the video scroll.
-  */
+  /* =========================
+     INTRO ANIMATION
+  ========================= */
 
   const introOpacity =
     progress < 0.18
       ? 1
-      : Math.max(0, 1 - (progress - 0.18) * 7);
+      : Math.max(
+          0,
+          1 - (progress - 0.18) * 7
+        );
 
   const introY = progress * -120;
+
+  /* =========================
+     DEVELOPER MESSAGE
+  ========================= */
 
   const developerOpacity =
     progress > 0.12 && progress < 0.48
@@ -113,6 +134,10 @@ function Hero() {
       ? (0.3 - progress) * -500
       : 0;
 
+  /* =========================
+     BUILD MESSAGE
+  ========================= */
+
   const buildOpacity =
     progress > 0.4 && progress < 0.75
       ? Math.min(
@@ -127,9 +152,16 @@ function Hero() {
       ? (0.55 - progress) * 600
       : 0;
 
+  /* =========================
+     FINAL MESSAGE
+  ========================= */
+
   const finalOpacity =
     progress > 0.7
-      ? Math.min(1, (progress - 0.7) * 5)
+      ? Math.min(
+          1,
+          (progress - 0.7) * 5
+        )
       : 0;
 
   const finalScale =
@@ -147,6 +179,10 @@ function Hero() {
     >
       <div className="hero">
 
+        {/* =========================
+            BACKGROUND VIDEO
+        ========================= */}
+
         <video
           ref={videoRef}
           className="hero-video"
@@ -162,7 +198,11 @@ function Hero() {
           aria-hidden="true"
         />
 
-        {/* INTRO */}
+
+        {/* =========================
+            INTRO
+        ========================= */}
+
         <div
           className="hero-content hero-intro"
           style={{
@@ -170,32 +210,58 @@ function Hero() {
             transform: `translateY(${introY}px)`,
           }}
         >
+
           <div className="eyebrow">
             AVAILABLE FOR WORK — THIMPHU / REMOTE
           </div>
 
-          <h1>
-            Phub
-            <br />
-            Dorji<span className="accent">.</span>
-          </h1>
+
+          {/* =========================
+              CHARACTER IMAGE
+          ========================= */}
+
+          <div className="hero-character">
+            <img
+              src={phubCharacter}
+              alt="Phub Dorji"
+              className="hero-character-image"
+            />
+          </div>
+
+
+          {/* =========================
+              ROLE
+          ========================= */}
 
           <p className="role">
-            Full Stack Developer building modern digital
-            experiences using React, Next.js and Flutter.
+            Phub Dorji Tsirap <br />
+            This is where the story begins.
           </p>
 
+
+          {/* =========================
+              SCROLL CUE
+          ========================= */}
+
           <div className="hero-foot">
-            <span>Scroll to explore</span>
+
+            <span>
+              Scroll to explore
+            </span>
 
             <div className="scroll-cue">
               <div className="line"></div>
             </div>
+
           </div>
+
         </div>
 
 
-        {/* DEVELOPER */}
+        {/* =========================
+            MESSAGE 01
+        ========================= */}
+
         <div
           className="scroll-message developer-message"
           style={{
@@ -206,23 +272,36 @@ function Hero() {
             `,
           }}
         >
-          <span className="message-number">01</span>
+
+          <span className="message-number">
+            01
+          </span>
 
           <h2>
             I BUILD
             <br />
-            <span>DIGITAL</span>
+
+            <span>
+              DIGITAL
+            </span>
+
             <br />
+
             EXPERIENCES.
           </h2>
 
           <p>
-            Interfaces that feel fast, intentional and alive.
+            Interfaces that feel fast,
+            intentional and alive.
           </p>
+
         </div>
 
 
-        {/* TECHNOLOGY */}
+        {/* =========================
+            MESSAGE 02
+        ========================= */}
+
         <div
           className="scroll-message build-message"
           style={{
@@ -233,23 +312,34 @@ function Hero() {
             `,
           }}
         >
-          <span className="message-number">02</span>
+
+          <span className="message-number">
+            02
+          </span>
 
           <h2>
             CODE.
             <br />
+
             CREATE.
             <br />
-            <span>SHIP.</span>
+
+            <span>
+              SHIP.
+            </span>
           </h2>
 
           <p>
             React · Next.js · Flutter · Node.js
           </p>
+
         </div>
 
 
-        {/* FINAL */}
+        {/* =========================
+            MESSAGE 03
+        ========================= */}
+
         <div
           className="scroll-message final-message"
           style={{
@@ -260,31 +350,53 @@ function Hero() {
             `,
           }}
         >
-          <span className="message-number">03</span>
+
+          <span className="message-number">
+            03
+          </span>
 
           <h2>
             LET'S
             <br />
+
             BUILD
             <br />
-            <span>SOMETHING.</span>
+
+            <span>
+              SOMETHING.
+            </span>
           </h2>
 
           <p>
             Scroll down to see my work.
           </p>
+
         </div>
 
 
-        {/* TOP RIGHT */}
+        {/* =========================
+            TOP RIGHT INDEX
+        ========================= */}
+
         <div className="hero-index">
-          <span>PORTFOLIO</span>
-          <span>2026</span>
+
+          <span>
+            PORTFOLIO
+          </span>
+
+          <span>
+            2026
+          </span>
+
         </div>
 
 
-        {/* PROGRESS */}
+        {/* =========================
+            PROGRESS
+        ========================= */}
+
         <div className="hero-progress">
+
           <div
             className="hero-progress-bar"
             style={{
@@ -293,8 +405,11 @@ function Hero() {
           />
 
           <span>
-            {String(Math.round(progress * 100)).padStart(2, "0")}
+            {String(
+              Math.round(progress * 100)
+            ).padStart(2, "0")}
           </span>
+
         </div>
 
       </div>
@@ -303,4 +418,3 @@ function Hero() {
 }
 
 export default Hero;
-

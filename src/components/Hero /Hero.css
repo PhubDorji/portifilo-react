@@ -1,9 +1,19 @@
+/* =========================
+   HERO SCROLL STAGE
+========================= */
 
 .hero-scroll-stage {
   height: var(--hero-scroll-height, 260vh);
+
   position: relative;
+
   background: var(--ink);
 }
+
+
+/* =========================
+   HERO
+========================= */
 
 .hero {
   height: 100vh;
@@ -31,11 +41,13 @@
 .hero-video,
 .hero-video-overlay {
   position: absolute;
+
   inset: 0;
 
   width: 100%;
   height: 100%;
 }
+
 
 .hero-video {
   z-index: -3;
@@ -45,8 +57,11 @@
 
   background: var(--ink);
 
-  filter: saturate(0.85) contrast(1.08);
+  filter:
+    saturate(0.85)
+    contrast(1.08);
 }
+
 
 .hero-video-overlay {
   z-index: -2;
@@ -70,31 +85,51 @@
 
 .hero-content {
   width: 100%;
+
   z-index: 5;
 
-  will-change: transform, opacity;
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  will-change:
+    transform,
+    opacity;
 }
+
+
+/* =========================
+   EYEBROW
+========================= */
 
 .eyebrow {
   font-family: var(--font-mono);
 
   font-size: 0.72rem;
+
   letter-spacing: 0.13em;
 
   color: var(--copper);
 
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.8rem;
 
   display: flex;
+
   align-items: center;
+
   gap: 12px;
 }
+
 
 .eyebrow::before {
   content: "";
 
   width: 7px;
   height: 7px;
+
+  flex-shrink: 0;
 
   border-radius: 50%;
 
@@ -103,51 +138,75 @@
   box-shadow:
     0 0 10px var(--teal);
 
-  animation: pulse 2s infinite ease-in-out;
+  animation:
+    pulse 2s infinite
+    ease-in-out;
 }
 
+
 @keyframes pulse {
+
   0%,
   100% {
     opacity: 1;
-    transform: scale(1);
+
+    transform:
+      scale(1);
   }
 
   50% {
     opacity: 0.35;
-    transform: scale(0.7);
+
+    transform:
+      scale(0.7);
   }
 }
 
 
-.hero-content h1 {
-  font-family: var(--font-display);
+/* =========================
+   CHARACTER IMAGE
+========================= */
 
-  font-size: clamp(
-    4.5rem,
-    11vw,
-    10rem
-  );
+.hero-character {
+  width: fit-content;
 
-  line-height: 0.83;
-
-  letter-spacing: -0.055em;
-
-  font-weight: 700;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 
   margin: 0;
 
-  color: var(--paper);
-
-  text-transform: uppercase;
+  position: relative;
 }
 
-.hero-content .accent {
-  color: var(--teal);
+.hero-character-image {
+  display: block;
+
+  width: min(480px, 42vw);
+  height: auto;
+
+  max-height: 58vh;
+
+  object-fit: contain;
+  object-position: left center;
+
+  user-select: none;
+  pointer-events: none;
+
+  filter:
+    drop-shadow(
+      0 25px 35px
+      rgba(0, 0, 0, 0.35)
+    );
 }
 
+
+/* =========================
+   ROLE
+========================= */
 
 .role {
+
   font-family: var(--font-display);
 
   font-size: clamp(
@@ -162,7 +221,9 @@
 
   max-width: 600px;
 
-  margin-top: 2rem;
+  margin-top: 1rem;
+
+  margin-bottom: 0;
 }
 
 
@@ -171,9 +232,11 @@
 ========================= */
 
 .hero-foot {
-  margin-top: 3.5rem;
+
+  margin-top: 2rem;
 
   display: flex;
+
   align-items: center;
 
   gap: 2rem;
@@ -189,39 +252,54 @@
   color: var(--paper-dim);
 }
 
+
 .scroll-cue {
+
   display: flex;
+
   align-items: center;
 }
 
+
 .scroll-cue .line {
+
   width: 1px;
+
   height: 42px;
 
-  background: rgba(255, 255, 255, 0.3);
+  background:
+    rgba(255, 255, 255, 0.3);
 
   position: relative;
 
   overflow: hidden;
 }
 
+
 .scroll-cue .line::after {
+
   content: "";
 
   position: absolute;
 
   left: 0;
+
   top: -10px;
 
   width: 100%;
+
   height: 10px;
 
   background: var(--teal);
 
-  animation: drip 1.5s infinite ease-in-out;
+  animation:
+    drip 1.5s infinite
+    ease-in-out;
 }
 
+
 @keyframes drip {
+
   0% {
     top: -10px;
   }
@@ -229,6 +307,7 @@
   100% {
     top: 42px;
   }
+
 }
 
 
@@ -237,21 +316,28 @@
 ========================= */
 
 .scroll-message {
+
   position: absolute;
 
   left: 8vw;
+
   top: 50%;
 
   z-index: 6;
 
-  width: min(800px, 80vw);
+  width:
+    min(800px, 80vw);
 
-  will-change: transform, opacity;
+  will-change:
+    transform,
+    opacity;
 
   pointer-events: none;
 }
 
+
 .message-number {
+
   display: block;
 
   font-family: var(--font-mono);
@@ -265,7 +351,9 @@
   margin-bottom: 1.2rem;
 }
 
+
 .scroll-message h2 {
+
   margin: 0;
 
   font-family: var(--font-display);
@@ -287,15 +375,21 @@
   text-transform: uppercase;
 }
 
+
 .scroll-message h2 span {
+
   color: transparent;
 
-  -webkit-text-stroke: 1px var(--paper);
+  -webkit-text-stroke:
+    1px var(--paper);
 
-  text-stroke: 1px var(--paper);
+  text-stroke:
+    1px var(--paper);
 }
 
+
 .scroll-message p {
+
   margin-top: 2rem;
 
   font-family: var(--font-mono);
@@ -315,6 +409,7 @@
 ========================= */
 
 .final-message {
+
   left: 50%;
 
   width: 90vw;
@@ -324,7 +419,9 @@
   transform-origin: center;
 }
 
+
 .final-message h2 {
+
   font-size: clamp(
     4.5rem,
     12vw,
@@ -332,7 +429,9 @@
   );
 }
 
+
 .final-message p {
+
   margin-top: 2.5rem;
 }
 
@@ -342,9 +441,11 @@
 ========================= */
 
 .hero-index {
+
   position: absolute;
 
   top: 32px;
+
   right: 6vw;
 
   z-index: 10;
@@ -362,7 +463,9 @@
   color: var(--paper-dim);
 }
 
+
 .hero-index span:last-child {
+
   color: var(--teal);
 }
 
@@ -372,9 +475,11 @@
 ========================= */
 
 .hero-progress {
+
   position: absolute;
 
   right: 6vw;
+
   bottom: 40px;
 
   z-index: 10;
@@ -392,60 +497,78 @@
   color: var(--paper-dim);
 }
 
+
 .hero-progress::before {
+
   content: "";
 
   width: 1px;
+
   height: 70px;
 
-  background: rgba(255, 255, 255, 0.18);
+  background:
+    rgba(255, 255, 255, 0.18);
 }
 
+
 .hero-progress-bar {
+
   position: absolute;
 
   bottom: 20px;
+
   left: 0;
 
   width: 1px;
+
   height: 70px;
 
   background: var(--teal);
 
   transform-origin: bottom;
 
-  transition: transform 0.08s linear;
+  transition:
+    transform 0.08s linear;
 }
 
 
 /* =========================
-   RESPONSIVE
+   TABLET
 ========================= */
 
 @media (max-width: 900px) {
+
   .hero {
+
     padding: 0 7vw;
   }
 
-  .hero-content h1 {
-    font-size: clamp(
-      4rem,
-      17vw,
-      7rem
-    );
+
+  .hero-character-image {
+
+    width:
+      min(480px, 68vw);
+
+    max-height: 52vh;
   }
 
+
   .role {
+
     max-width: 90%;
   }
 
+
   .scroll-message {
+
     left: 7vw;
 
     width: 86vw;
   }
 
+
   .scroll-message h2 {
+
     font-size: clamp(
       3.4rem,
       14vw,
@@ -453,45 +576,92 @@
     );
   }
 
+
   .hero-index {
+
     right: 7vw;
   }
 
+
   .hero-progress {
+
     display: none;
   }
+
 }
 
 
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 600px) {
+
   .hero {
+
     min-height: 600px;
+
+    padding: 0 7vw;
   }
+
 
   .eyebrow {
+
     font-size: 0.62rem;
+
+    margin-bottom: 0.5rem;
   }
 
-  .hero-content h1 {
-    font-size: 22vw;
+
+  .hero-character {
+
+    margin-top: 0;
   }
+
+
+  .hero-character-image {
+
+    width: 78vw;
+
+    max-height: 44vh;
+  }
+
 
   .role {
+
     font-size: 1rem;
 
-    margin-top: 1.5rem;
+    margin-top: 1rem;
+
+    max-width: 100%;
   }
+
 
   .hero-foot {
-    margin-top: 2.5rem;
+
+    margin-top: 1.8rem;
   }
 
+
   .scroll-message h2 {
+
     font-size: 16vw;
   }
 
+
   .scroll-message p {
+
     font-size: 0.62rem;
   }
-}
 
+
+  .hero-index {
+
+    top: 22px;
+
+    right: 7vw;
+
+    font-size: 0.55rem;
+  }
+
+}

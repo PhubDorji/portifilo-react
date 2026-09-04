@@ -85,18 +85,13 @@
 
 .hero-content {
   width: 100%;
-
   z-index: 5;
 
   display: flex;
-
   flex-direction: column;
-
   align-items: flex-start;
 
-  will-change:
-    transform,
-    opacity;
+  will-change: transform, opacity;
 }
 
 
@@ -181,23 +176,21 @@
 
 .hero-character-image {
   display: block;
-
   width: min(480px, 42vw);
   height: auto;
-
   max-height: 58vh;
-
   object-fit: contain;
   object-position: left center;
+
+  margin-left: -120px;
 
   user-select: none;
   pointer-events: none;
 
-  filter:
-    drop-shadow(
-      0 25px 35px
-      rgba(0, 0, 0, 0.35)
-    );
+  filter: drop-shadow(
+    0 25px 35px
+    rgba(0, 0, 0, 0.35)
+  );
 }
 
 

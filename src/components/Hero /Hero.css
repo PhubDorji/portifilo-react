@@ -1,143 +1,497 @@
+
 .hero-scroll-stage {
   height: var(--hero-scroll-height, 260vh);
   position: relative;
+  background: var(--ink);
 }
 
 .hero {
   height: 100vh;
   min-height: 620px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 6vw;
+
   position: sticky;
   top: 0;
+
   overflow: hidden;
   isolation: isolate;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 6vw;
+
+  background: var(--ink);
 }
+
+
+/* =========================
+   VIDEO
+========================= */
 
 .hero-video,
 .hero-video-overlay {
   position: absolute;
   inset: 0;
+
   width: 100%;
   height: 100%;
 }
 
 .hero-video {
-  z-index: -2;
+  z-index: -3;
+
   object-fit: cover;
   object-position: center;
+
   background: var(--ink);
+
+  filter: saturate(0.85) contrast(1.08);
 }
 
 .hero-video-overlay {
-  z-index: -1;
-  background: linear-gradient(90deg, rgba(12, 21, 36, 0.94) 0%, rgba(12, 21, 36, 0.62) 48%, rgba(12, 21, 36, 0.35) 100%);
+  z-index: -2;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(7, 13, 24, 0.96) 0%,
+      rgba(7, 13, 24, 0.78) 32%,
+      rgba(7, 13, 24, 0.35) 68%,
+      rgba(7, 13, 24, 0.55) 100%
+    );
+
+  pointer-events: none;
 }
+
+
+/* =========================
+   MAIN INTRO
+========================= */
 
 .hero-content {
   width: 100%;
-  z-index: 1;
+  z-index: 5;
+
+  will-change: transform, opacity;
 }
 
 .eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+
   color: var(--copper);
-  letter-spacing: 0.08em;
-  margin-bottom: 1.4rem;
+
+  margin-bottom: 1.5rem;
+
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .eyebrow::before {
-  content: '';
-  width: 8px;
-  height: 8px;
+  content: "";
+
+  width: 7px;
+  height: 7px;
+
   border-radius: 50%;
+
   background: var(--teal);
-  box-shadow: 0 0 8px var(--teal);
+
+  box-shadow:
+    0 0 10px var(--teal);
+
   animation: pulse 2s infinite ease-in-out;
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.35; }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.35;
+    transform: scale(0.7);
+  }
 }
+
 
 .hero-content h1 {
   font-family: var(--font-display);
+
+  font-size: clamp(
+    4.5rem,
+    11vw,
+    10rem
+  );
+
+  line-height: 0.83;
+
+  letter-spacing: -0.055em;
+
   font-weight: 700;
-  font-size: clamp(2.6rem, 8vw, 6.2rem);
-  line-height: 0.98;
-  letter-spacing: -0.01em;
+
+  margin: 0;
+
+  color: var(--paper);
+
+  text-transform: uppercase;
 }
 
 .hero-content .accent {
   color: var(--teal);
 }
 
+
 .role {
   font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.1rem, 2.4vw, 1.7rem);
+
+  font-size: clamp(
+    1rem,
+    1.6vw,
+    1.35rem
+  );
+
+  line-height: 1.45;
+
   color: var(--paper-dim);
-  margin-top: 1.2rem;
-  max-width: 640px;
+
+  max-width: 600px;
+
+  margin-top: 2rem;
 }
 
+
+/* =========================
+   SCROLL CUE
+========================= */
+
 .hero-foot {
-  margin-top: 3rem;
+  margin-top: 3.5rem;
+
   display: flex;
-  gap: 2.5rem;
   align-items: center;
+
+  gap: 2rem;
+
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+
+  font-size: 0.7rem;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
   color: var(--paper-dim);
 }
 
 .scroll-cue {
   display: flex;
   align-items: center;
-  gap: 8px;
 }
 
 .scroll-cue .line {
   width: 1px;
-  height: 28px;
-  background: var(--paper-dim);
+  height: 42px;
+
+  background: rgba(255, 255, 255, 0.3);
+
   position: relative;
+
   overflow: hidden;
 }
 
 .scroll-cue .line::after {
-  content: '';
+  content: "";
+
   position: absolute;
-  top: 0;
+
   left: 0;
+  top: -10px;
+
   width: 100%;
-  height: 8px;
+  height: 10px;
+
   background: var(--teal);
-  animation: drip 1.8s infinite;
+
+  animation: drip 1.5s infinite ease-in-out;
 }
 
 @keyframes drip {
-  0% { top: -8px; }
-  100% { top: 28px; }
+  0% {
+    top: -10px;
+  }
+
+  100% {
+    top: 42px;
+  }
 }
+
+
+/* =========================
+   SCROLL TEXT
+========================= */
+
+.scroll-message {
+  position: absolute;
+
+  left: 8vw;
+  top: 50%;
+
+  z-index: 6;
+
+  width: min(800px, 80vw);
+
+  will-change: transform, opacity;
+
+  pointer-events: none;
+}
+
+.message-number {
+  display: block;
+
+  font-family: var(--font-mono);
+
+  font-size: 0.72rem;
+
+  color: var(--teal);
+
+  letter-spacing: 0.12em;
+
+  margin-bottom: 1.2rem;
+}
+
+.scroll-message h2 {
+  margin: 0;
+
+  font-family: var(--font-display);
+
+  font-size: clamp(
+    4rem,
+    9vw,
+    9rem
+  );
+
+  line-height: 0.82;
+
+  letter-spacing: -0.055em;
+
+  font-weight: 700;
+
+  color: var(--paper);
+
+  text-transform: uppercase;
+}
+
+.scroll-message h2 span {
+  color: transparent;
+
+  -webkit-text-stroke: 1px var(--paper);
+
+  text-stroke: 1px var(--paper);
+}
+
+.scroll-message p {
+  margin-top: 2rem;
+
+  font-family: var(--font-mono);
+
+  font-size: 0.75rem;
+
+  letter-spacing: 0.08em;
+
+  color: var(--paper-dim);
+
+  text-transform: uppercase;
+}
+
+
+/* =========================
+   FINAL MESSAGE
+========================= */
+
+.final-message {
+  left: 50%;
+
+  width: 90vw;
+
+  text-align: center;
+
+  transform-origin: center;
+}
+
+.final-message h2 {
+  font-size: clamp(
+    4.5rem,
+    12vw,
+    12rem
+  );
+}
+
+.final-message p {
+  margin-top: 2.5rem;
+}
+
+
+/* =========================
+   TOP RIGHT INDEX
+========================= */
+
+.hero-index {
+  position: absolute;
+
+  top: 32px;
+  right: 6vw;
+
+  z-index: 10;
+
+  display: flex;
+
+  gap: 18px;
+
+  font-family: var(--font-mono);
+
+  font-size: 0.65rem;
+
+  letter-spacing: 0.1em;
+
+  color: var(--paper-dim);
+}
+
+.hero-index span:last-child {
+  color: var(--teal);
+}
+
+
+/* =========================
+   VERTICAL PROGRESS
+========================= */
+
+.hero-progress {
+  position: absolute;
+
+  right: 6vw;
+  bottom: 40px;
+
+  z-index: 10;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  font-family: var(--font-mono);
+
+  font-size: 0.65rem;
+
+  color: var(--paper-dim);
+}
+
+.hero-progress::before {
+  content: "";
+
+  width: 1px;
+  height: 70px;
+
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.hero-progress-bar {
+  position: absolute;
+
+  bottom: 20px;
+  left: 0;
+
+  width: 1px;
+  height: 70px;
+
+  background: var(--teal);
+
+  transform-origin: bottom;
+
+  transition: transform 0.08s linear;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media (max-width: 900px) {
   .hero {
-    flex-direction: column;
-    text-align: center;
-    min-height: 100vh;
+    padding: 0 7vw;
   }
 
-  .hero-content {
-    width: 100%;
-    margin-bottom: 2rem;
+  .hero-content h1 {
+    font-size: clamp(
+      4rem,
+      17vw,
+      7rem
+    );
   }
 
+  .role {
+    max-width: 90%;
+  }
+
+  .scroll-message {
+    left: 7vw;
+
+    width: 86vw;
+  }
+
+  .scroll-message h2 {
+    font-size: clamp(
+      3.4rem,
+      14vw,
+      7rem
+    );
+  }
+
+  .hero-index {
+    right: 7vw;
+  }
+
+  .hero-progress {
+    display: none;
+  }
 }
+
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 600px;
+  }
+
+  .eyebrow {
+    font-size: 0.62rem;
+  }
+
+  .hero-content h1 {
+    font-size: 22vw;
+  }
+
+  .role {
+    font-size: 1rem;
+
+    margin-top: 1.5rem;
+  }
+
+  .hero-foot {
+    margin-top: 2.5rem;
+  }
+
+  .scroll-message h2 {
+    font-size: 16vw;
+  }
+
+  .scroll-message p {
+    font-size: 0.62rem;
+  }
+}
+

@@ -1,17 +1,20 @@
+
 import { useEffect, useRef, useState } from "react";
 import spiderManVideo from "../../assets/spider-man.mp4";
 
 import "./Hero.css";
 
-
 function Hero() {
   const sectionRef = useRef(null);
   const videoRef = useRef(null);
+
   const [scrollHeight, setScrollHeight] = useState(260);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const section = sectionRef.current;
     const video = videoRef.current;
+
     if (!section || !video) return;
 
     let frameId;
@@ -20,14 +23,21 @@ function Hero() {
       frameId = undefined;
 
       const sectionTop = section.offsetTop;
-      const scrollableDistance = section.offsetHeight - window.innerHeight;
-      const progress = Math.min(
+      const scrollableDistance =
+        section.offsetHeight - window.innerHeight;
+
+      const currentProgress = Math.min(
         1,
-        Math.max(0, (window.scrollY - sectionTop) / scrollableDistance),
+        Math.max(
+          0,
+          (window.scrollY - sectionTop) / scrollableDistance
+        )
       );
 
+      setProgress(currentProgress);
+
       if (video.duration) {
-        video.currentTime = progress * video.duration;
+        video.currentTime = currentProgress * video.duration;
       }
     };
 
@@ -44,25 +54,99 @@ function Hero() {
     };
 
     video.addEventListener("loadedmetadata", handleMetadata);
-    window.addEventListener("scroll", requestVideoUpdate, { passive: true });
+
+    window.addEventListener(
+      "scroll",
+      requestVideoUpdate,
+      { passive: true }
+    );
+
     window.addEventListener("resize", requestVideoUpdate);
+
     requestVideoUpdate();
 
     return () => {
-      if (frameId !== undefined) window.cancelAnimationFrame(frameId);
-      video.removeEventListener("loadedmetadata", handleMetadata);
-      window.removeEventListener("scroll", requestVideoUpdate);
-      window.removeEventListener("resize", requestVideoUpdate);
+      if (frameId !== undefined) {
+        window.cancelAnimationFrame(frameId);
+      }
+
+      video.removeEventListener(
+        "loadedmetadata",
+        handleMetadata
+      );
+
+      window.removeEventListener(
+        "scroll",
+        requestVideoUpdate
+      );
+
+      window.removeEventListener(
+        "resize",
+        requestVideoUpdate
+      );
     };
   }, []);
+
+  /*
+    Different text sections appear at different
+    points of the video scroll.
+  */
+
+  const introOpacity =
+    progress < 0.18
+      ? 1
+      : Math.max(0, 1 - (progress - 0.18) * 7);
+
+  const introY = progress * -120;
+
+  const developerOpacity =
+    progress > 0.12 && progress < 0.48
+      ? Math.min(
+          1,
+          (progress - 0.12) * 8,
+          (0.48 - progress) * 8
+        )
+      : 0;
+
+  const developerX =
+    progress < 0.3
+      ? (0.3 - progress) * -500
+      : 0;
+
+  const buildOpacity =
+    progress > 0.4 && progress < 0.75
+      ? Math.min(
+          1,
+          (progress - 0.4) * 8,
+          (0.75 - progress) * 8
+        )
+      : 0;
+
+  const buildX =
+    progress < 0.55
+      ? (0.55 - progress) * 600
+      : 0;
+
+  const finalOpacity =
+    progress > 0.7
+      ? Math.min(1, (progress - 0.7) * 5)
+      : 0;
+
+  const finalScale =
+    progress > 0.7
+      ? 0.85 + (progress - 0.7) * 0.5
+      : 0.85;
 
   return (
     <section
       className="hero-scroll-stage"
       ref={sectionRef}
-      style={{ "--hero-scroll-height": `${scrollHeight}vh` }}
+      style={{
+        "--hero-scroll-height": `${scrollHeight}vh`,
+      }}
     >
       <div className="hero">
+
         <video
           ref={videoRef}
           className="hero-video"
@@ -72,24 +156,151 @@ function Hero() {
           preload="metadata"
           aria-hidden="true"
         />
-        <div className="hero-video-overlay" aria-hidden="true" />
 
-        <div className="hero-content">
-          <div className="eyebrow">AVAILABLE FOR WORK — THIMPHU / REMOTE</div>
-          <h1>Phub<br />Dorji<span className="accent">.</span></h1>
-          <p className="role">Full Stack Developer building modern web applications using React, Next.js and Flutter — from first sketch to shipped code.</p>
+        <div
+          className="hero-video-overlay"
+          aria-hidden="true"
+        />
+
+        {/* INTRO */}
+        <div
+          className="hero-content hero-intro"
+          style={{
+            opacity: introOpacity,
+            transform: `translateY(${introY}px)`,
+          }}
+        >
+          <div className="eyebrow">
+            AVAILABLE FOR WORK — THIMPHU / REMOTE
+          </div>
+
+          <h1>
+            Phub
+            <br />
+            Dorji<span className="accent">.</span>
+          </h1>
+
+          <p className="role">
+            Full Stack Developer building modern digital
+            experiences using React, Next.js and Flutter.
+          </p>
+
           <div className="hero-foot">
             <span>Scroll to explore</span>
-            <div className="scroll-cue"><div className="line"></div></div>
+
+            <div className="scroll-cue">
+              <div className="line"></div>
+            </div>
           </div>
+        </div>
+
+
+        {/* DEVELOPER */}
+        <div
+          className="scroll-message developer-message"
+          style={{
+            opacity: developerOpacity,
+            transform: `
+              translateX(${developerX}px)
+              translateY(-50%)
+            `,
+          }}
+        >
+          <span className="message-number">01</span>
+
+          <h2>
+            I BUILD
+            <br />
+            <span>DIGITAL</span>
+            <br />
+            EXPERIENCES.
+          </h2>
+
+          <p>
+            Interfaces that feel fast, intentional and alive.
+          </p>
+        </div>
+
+
+        {/* TECHNOLOGY */}
+        <div
+          className="scroll-message build-message"
+          style={{
+            opacity: buildOpacity,
+            transform: `
+              translateX(${buildX}px)
+              translateY(-50%)
+            `,
+          }}
+        >
+          <span className="message-number">02</span>
+
+          <h2>
+            CODE.
+            <br />
+            CREATE.
+            <br />
+            <span>SHIP.</span>
+          </h2>
+
+          <p>
+            React · Next.js · Flutter · Node.js
+          </p>
+        </div>
+
+
+        {/* FINAL */}
+        <div
+          className="scroll-message final-message"
+          style={{
+            opacity: finalOpacity,
+            transform: `
+              translate(-50%, -50%)
+              scale(${finalScale})
+            `,
+          }}
+        >
+          <span className="message-number">03</span>
+
+          <h2>
+            LET'S
+            <br />
+            BUILD
+            <br />
+            <span>SOMETHING.</span>
+          </h2>
+
+          <p>
+            Scroll down to see my work.
+          </p>
+        </div>
+
+
+        {/* TOP RIGHT */}
+        <div className="hero-index">
+          <span>PORTFOLIO</span>
+          <span>2026</span>
+        </div>
+
+
+        {/* PROGRESS */}
+        <div className="hero-progress">
+          <div
+            className="hero-progress-bar"
+            style={{
+              transform: `scaleY(${progress})`,
+            }}
+          />
+
+          <span>
+            {String(Math.round(progress * 100)).padStart(2, "0")}
+          </span>
         </div>
 
       </div>
     </section>
-
   );
-
 }
 
-
 export default Hero;
+

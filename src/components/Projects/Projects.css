@@ -68,3 +68,27 @@
     grid-column: 2;
   }
 }
+
+@media (max-width: 600px) {
+  .projects {
+    padding: 5rem 7vw 6rem;
+  }
+
+  .proj-row {
+    grid-template-columns: 34px 1fr;
+    gap: 0.45rem 0.8rem;
+    padding: 1.2rem 0.2rem;
+  }
+
+  .proj-name {
+    font-size: 1.08rem;
+  }
+
+  .proj-desc {
+    font-size: 0.8rem;
+  }
+
+  .proj-tag {
+    font-size: 0.66rem;
+  }
+}

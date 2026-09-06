@@ -67,6 +67,10 @@
 }
 
 @media (max-width: 768px) {
+  .navbar {
+    padding: 18px 7vw;
+  }
+
   .menu-btn {
     display: block;
   }
@@ -86,5 +90,22 @@
 
   .nav-links.active {
     display: flex;
+  }
+
+  .nav-links a {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 0.98rem;
+  }
+
+  .nav-links {
+    top: 64px;
+    gap: 1.2rem;
+    padding: 1.5rem 0;
   }
 }

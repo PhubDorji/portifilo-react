@@ -32,3 +32,18 @@
   background: var(--teal);
   border-color: var(--teal);
 }
+
+@media (max-width: 600px) {
+  .contact {
+    padding: 6rem 7vw 5rem;
+  }
+
+  .contact-links {
+    gap: 1rem;
+  }
+
+  .contact-links a {
+    width: 100%;
+    text-align: center;
+  }
+}

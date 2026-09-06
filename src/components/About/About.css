@@ -220,3 +220,23 @@
   }
 }
 
+@media (max-width: 600px) {
+  .about {
+    padding: 6rem 7vw;
+  }
+
+  .sec-head {
+    gap: 10px;
+    margin-bottom: 2rem;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+  }
+
+  .running-person {
+    width: 100px;
+    height: 100px;
+  }
+}
+

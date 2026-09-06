@@ -33,3 +33,17 @@
   color: var(--paper);
   padding-left: 8px;
 }
+
+@media (max-width: 600px) {
+  .skills {
+    padding: 5rem 7vw 6rem;
+  }
+
+  .skills-grid {
+    gap: 1.4rem;
+  }
+
+  .skill-block li {
+    font-size: 0.98rem;
+  }
+}

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import spiderManVideo from "../../assets/spider-man.mp4";
+import heroPoster from "../../assets/hero.png";
 import phubCharacter from "../../assets/phub-character.png";
 
 import "./Hero.css";
@@ -10,6 +11,7 @@ function Hero() {
 
   const [scrollHeight, setScrollHeight] = useState(260);
   const [progress, setProgress] = useState(0);
+  const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -18,6 +20,7 @@ function Hero() {
     if (!section || !video) return;
 
     let frameId;
+    let observer;
 
     const updateVideo = () => {
       frameId = undefined;
@@ -62,10 +65,38 @@ function Hero() {
       }
     };
 
+    const handleVideoVisibility = (entries) => {
+      const [entry] = entries;
+
+      if (!entry) return;
+
+      if (entry.isIntersecting) {
+        setVideoReady(true);
+        video.preload = "metadata";
+        if (video.paused) {
+          video.load();
+        }
+      } else if (entry.boundingClientRect.top > window.innerHeight * 1.5) {
+        video.pause();
+      }
+    };
+
+    const startObserver = () => {
+      observer = new IntersectionObserver(handleVideoVisibility, {
+        root: null,
+        rootMargin: "200px 0px",
+        threshold: 0.15,
+      });
+
+      observer.observe(video);
+    };
+
     video.addEventListener(
       "loadedmetadata",
       handleMetadata
     );
+
+    startObserver();
 
     window.addEventListener(
       "scroll",
@@ -85,6 +116,10 @@ function Hero() {
         window.cancelAnimationFrame(frameId);
       }
 
+      if (observer) {
+        observer.disconnect();
+      }
+
       video.removeEventListener(
         "loadedmetadata",
         handleMetadata
@@ -101,6 +136,18 @@ function Hero() {
       );
     };
   }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+
+    if (!video) return;
+
+    video.muted = true;
+    video.playsInline = true;
+    video.preload = "metadata";
+    video.pause();
+    video.currentTime = 0;
+  }, [videoReady]);
 
   /* =========================
      INTRO ANIMATION
@@ -186,10 +233,12 @@ function Hero() {
         <video
           ref={videoRef}
           className="hero-video"
-          src={spiderManVideo}
+          src={videoReady ? spiderManVideo : ""}
           muted
           playsInline
           preload="metadata"
+          loop={false}
+          poster={heroPoster}
           aria-hidden="true"
         />
 
